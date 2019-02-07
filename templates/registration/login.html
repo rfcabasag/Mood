@@ -25,6 +25,11 @@
 						{{ field }}
 					</div>
 					{% endif %}
+					{% if field.errors %}
+					<div class="ui negative mini message">
+					  <p>{{ field.errors }}</p>
+					</div>		
+					{% endif %}
 				{% endfor %}
 				<button class="ui fluid large submit button" id="pinkbtn" type="submit">log in</button>
 			</div>
