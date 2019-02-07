@@ -1,12 +1,66 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset = 'utf-8'>
-  <title> {% block title %} Base Page {% endblock %} </title>
+	<title>{% block title %} Base Page {% endblock %}</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	
+	<style type="text/css">
+		body {
+			background: #a8d1e7;
+		}
+
+		body > .grid {
+		  height: 100%;
+		}
+		.image {
+		  margin-top: -100px;
+		}
+		.column {
+		  max-width: 450px;
+		}
+
+		/*MOOD TITLE
+		mood1 - large title
+		mood2 - medium title
+		mood3 - title for menubar*/
+
+		.mood1 {
+			margin-top: 10%; ;
+			margin-left: 15%;
+			width: 40%;
+		}
+
+		.mood2 {
+			width: inherit;
+		}
+
+		#pinkbtn {
+			background-color: #eb6b6b;
+			color: #fff;
+		}
+		#pinkbtn:hover {
+			transition: 0.5s;
+			background-color: #ec5d5d;
+		}
+
+		#bluebtn {
+			background-color: #24315e;
+			color: #fff;
+		}
+		#bluebtn:hover {
+			transition: 0.5s;
+			background-color: #1b2752;
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+
+	{% block script %}{% endblock %}
 </head>
 <body>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
+	{% block content %}
+	{% endblock %}
 </body>
 </html>

@@ -1,0 +1,37 @@
+body {
+	background: #a8d1e7;
+}
+
+/*MOOD TITLE
+mood1 - large title
+mood2 - medium title
+mood3 - title for menubar*/
+
+.mood1 {
+	margin-top: 10%; ;
+	margin-left: 15%;
+	width: 40%;
+}
+
+.mood2 {
+	width: inherit;
+}
+
+.formcontainer {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.formdiv {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+

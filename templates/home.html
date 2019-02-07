@@ -4,10 +4,16 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}
-  <p> <a href = "{% url 'logout' %}"> Logout </a> <p>
+	Hi {{ user.username }}
+	<p> <a href = "{% url 'logout' %}"> Logout </a> <p>
 {% else %}
-  <p> Sorry you have entered an invalid username-password combination. </p>
-  <a href = "{% url 'login' %}"> Login </a>
+
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<p> insert Mood title photo here </p>
+	<a class="ui large button" id="pinkbtn" href = "{% url 'login' %}"> log in </a>
+	<a class="ui large button" id="bluebtn" href = "/accounts/signup"> sign up </a>
+	</div>
+</div>
 {% endif %}
 {% endblock %}
