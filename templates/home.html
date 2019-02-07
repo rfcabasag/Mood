@@ -4,8 +4,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-	Hi {{ user.username }}
-	<p> <a href = "{% url 'logout' %}"> Logout </a> <p>
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<p> How are you feeling today, {{ user.username }}? </p>
+	<a class="ui large button" id="pinkbtn" href = "/mood-menu"> mood </a>
+	<a class="ui large button" id="bluebtn" href = "/activity-menu"> activity </a>
+	</div>
+</div>
+	<a href = "{% url 'logout' %}"> Logout </a>
 {% else %}
 
 <div class="ui middle aligned center aligned grid">
