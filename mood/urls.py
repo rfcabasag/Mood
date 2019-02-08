@@ -1,4 +1,16 @@
-"""mood URL Configuration
+"""
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+	Author: Jose Maria C. Ibardaloza
+	Code History:
+		Programmer				        Change Date			Change Description
+		Jose Maria C. Ibardaloza		02/05/19		    Added url patterns
+	Creation Date: 02/05/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file dictates the urls that the app will follow.
+
+mood URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
