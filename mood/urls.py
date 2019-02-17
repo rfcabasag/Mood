@@ -4,6 +4,7 @@
 	Code History:
 		Programmer				        Change Date			Change Description
 		Jose Maria C. Ibardaloza		02/05/19		    Added url patterns
+        Robert Daniel Cabasag           02/17/19            added maintainmood path
 	Creation Date: 02/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -35,4 +36,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name = 'home.html'), name = 'Home'),
     path('', TemplateView.as_view(template_name = 'login.html'), name = 'Login'),
+    path('maintainmood/', include('maintainmood.urls')),
 ]
