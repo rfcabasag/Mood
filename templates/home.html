@@ -23,8 +23,8 @@
 <div class="ui middle aligned center aligned grid">
 	<div class="column">
 		<p> How are you feeling today, {{ user.username }}? </p>
-	<a class="ui large button" id="pinkbtn" href = "/maintainmood"> mood </a>
-	<a class="ui large button" id="bluebtn" href = "/activity-menu"> activity </a>
+		<a class="ui large button" id="pinkbtn" href = "/maintainmood"> mood </a>
+		<a class="ui large button" id="bluebtn" href = "/activity-menu"> activity </a>
 	</div>
 </div>
 	<a href = "{% url 'logout' %}"> Logout </a>
@@ -32,9 +32,11 @@
 
 <div class="ui middle aligned center aligned grid">
 	<div class="column">
-		<p> insert Mood title photo here </p>
-	<a class="ui large button" id="pinkbtn" href = "{% url 'login' %}"> log in </a>
-	<a class="ui large button" id="bluebtn" href = "/accounts/signup"> sign up </a>
+		<h1 class="mood1">
+			Mood
+		</h1>
+		<a class="ui large button" id="pinkbtn" href = "{% url 'login' %}"> log in </a>
+		<a class="ui large button" id="bluebtn" href = "/accounts/signup"> sign up </a>
 	</div>
 </div>
 {% endif %}
