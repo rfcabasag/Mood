@@ -12,12 +12,43 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 
 """
 
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from .models import Mood
+from SignUp.models import RegisteredUser
+from django.contrib.auth.decorators import login_required
 
-# adds the user's mood string input 
+mood = [
+	{'mood':'sad'},
+	{'mood':'asdfghjkl'}
+]
+
+# lists the mood inputs of the user
+def moodpage(request):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	moodlist = Mood.objects.filter(user=current_user[0])
+
+	return render(request, 'maintainmood/m_mood.html', {'mood':moodlist})
+	
+
+# view function to process the user's mood string input
 def addmood(request):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	if (request.method == 'POST'):
+		moodtext = request.POST['moodinput']
+
+		newMood = Mood(user=current_user[0], mood=moodtext)
+
+		newMood.save()
+
+		return redirect('moodpage')
+	else:
+		form = None
+
 	return render(request, 'maintainmood/addmood.html')
-
-
+	
 

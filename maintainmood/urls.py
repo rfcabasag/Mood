@@ -17,5 +17,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-	path('', views.addmood, name='addmood'),
+	path('', views.moodpage, name='moodpage'),
+	path('add/', views.addmood, name='addmood'),
 ]

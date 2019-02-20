@@ -10,11 +10,10 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	
 	This file dictates the urls that the app will follow.
 """
-
+from django.conf.urls import url
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
-    path('signup/', views.SignUp.as_view(), name = 'SignUp'),
+    path('signup/', views.signup, name = 'signup'),
 ]
