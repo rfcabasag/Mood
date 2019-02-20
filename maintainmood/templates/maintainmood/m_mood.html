@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Maintain Mood Landing Page {% endblock %}
+
+{% block content %}
+
+<div class = "ui container segment">
+	<h4> Today you have been, </h4>
+	{% if mood %}
+		{% for m in mood %}
+			<p> {{m.mood}} </p>
+		{% endfor %}
+	{% else %}
+		<p> empty. </p>
+	{% endif %}
+</div>
+<div class = "ui container segment">	
+	<h4> Tell us how you feel </h4>
+	<a href="{% url 'addmood' %}"> 
+		<button class="ui button">
+ 			 Add Mood
+		</button>
+	</a>
+</div>
+<a href = "{% url 'logout' %}"> Logout </a>
+
+
+{% endblock %}
