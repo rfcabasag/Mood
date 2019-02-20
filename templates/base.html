@@ -6,6 +6,7 @@
 	Code History:
 		Programmer				Change Date			Change Description
 		Katreen Hernandez		02/08/19			declare universal styles
+		Katreen Hernandez		02/20/19			update title text
 	
 	Creation Date: 02/06/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
@@ -20,6 +21,7 @@
 	<title>{% block title %} Base Page {% endblock %}</title>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 	
 	<style type="text/css">
 		body {
@@ -29,31 +31,24 @@
 		body > .grid {
 		  height: 100%;
 		}
-		.image {
-		  margin-top: -100px;
-		}
+
 		.column {
 		  max-width: 450px;
 		}
 
-		/*MOOD TITLE
-		mood1 - large title
-		mood2 - medium title
-		mood3 - title for menubar*/
-
+		/* main title */
 		.mood1 {
-			margin-top: 10%; ;
-			margin-left: 15%;
-			width: 40%;
-		}
-
-		.mood2 {
-			width: inherit;
+			font-family: 'Rubik';
+			font-size: 150px;
+			color: white;
+			text-shadow: -5px 5px #eb6b6b, 5px -5px #24315e;
+			animation: fadein 1.5s;
 		}
 
 		#pinkbtn {
 			background-color: #eb6b6b;
 			color: #fff;
+			animation: fadein 2s;
 		}
 		#pinkbtn:hover {
 			transition: 0.5s;
@@ -63,10 +58,16 @@
 		#bluebtn {
 			background-color: #24315e;
 			color: #fff;
+			animation: fadein 2s;
 		}
 		#bluebtn:hover {
 			transition: 0.5s;
 			background-color: #1b2752;
+		}
+
+		@keyframes fadein {
+			from { opacity: 0; }
+			to   { opacity: 1; }
 		}
 	</style>
 
