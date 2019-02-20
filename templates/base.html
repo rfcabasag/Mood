@@ -32,6 +32,7 @@
 		  height: 100%;
 		}
 
+		/* menu column */
 		.column {
 		  max-width: 450px;
 		}
@@ -42,13 +43,30 @@
 			font-size: 150px;
 			color: white;
 			text-shadow: -5px 5px #eb6b6b, 5px -5px #24315e;
+		}
+
+		/* fade classes */
+		.fadein-1 {
 			animation: fadein 1.5s;
 		}
 
+		.fadein-2 {
+			animation: fadein 2s;
+		}
+
+		/* delay classes */
+		.delay-1 {
+			animation-delay: 1.5s;
+		}
+
+		.delay-2 {
+			animation-delay: 2s;
+		}
+
+		/* buttons */
 		#pinkbtn {
 			background-color: #eb6b6b;
 			color: #fff;
-			animation: fadein 2s;
 		}
 		#pinkbtn:hover {
 			transition: 0.5s;
@@ -58,7 +76,6 @@
 		#bluebtn {
 			background-color: #24315e;
 			color: #fff;
-			animation: fadein 2s;
 		}
 		#bluebtn:hover {
 			transition: 0.5s;
