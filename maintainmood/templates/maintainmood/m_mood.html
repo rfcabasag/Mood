@@ -3,29 +3,55 @@
 {% block title %} Mood. {% endblock %}
 
 {% block content %}
-
-<div class = "ui container segment">
-	<h4> Today you have been, </h4>
-	{% if mood %}
-		{% for m in mood %}
-			<div>{{m.mood}} | {{m.status}}</div>
-			<a href="{{m.id}}/delete">Delete mood</a>
-		{% endfor %}
-	{% else %}
-		<p> empty. </p>
-	{% endif %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="#" class="item">Home</a>
+    <div class="right menu">
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
 </div>
-<div class = "ui container segment">
-	<h4>
-		Tell us how you feel ^_^ uwu
-		<a href="{% url 'addmood' %}">
-			<button class="ui button">
-	 			 Add Mood
-			</button>
-		</a>
-	</h4>
-</div>
-<a href = "{% url 'logout' %}"> Logout </a>
 
+<div class="ui main text container">
+  {% if mood %}
+  <div class="ui container segment">
+    <h1>Today, you have felt</h1>
+    <div class="ui three cards">
+    {% for m in mood %}
+      <div class="card">
+        <div class="content">
+          <div class="header">{{m.mood}}</div>
+          <div class="description">
+            {{m.status}}
+          </div>
+        </div>
+        <a href="{{m.id}}/delete">
+          <div class="ui bottom attached button">
+            <i class="close icon"></i>
+            delete mood
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="ui center aligned container segment">
+    <p>Got more to add?</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "/activity-menu">input activity</a>
+  </div>
+  {% else %}
+  <div class="ui center aligned container segment">
+    <p>You haven't registered anything for today.</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "/activity-menu">input activity</a>
+  </div>
+  {% endif %}
+
+</div>
 
 {% endblock %}
