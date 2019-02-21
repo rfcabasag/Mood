@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Maintain Mood Landing Page {% endblock %}
+{% block title %} Mood. {% endblock %}
 
 {% block content %}
 
@@ -9,6 +9,14 @@
 	{% if mood %}
 		{% for m in mood %}
 			<p> {{m.mood}} </p>
+		{% endfor %}
+	{% else %}
+		<p> empty. </p>
+	{% endif %}
+	<h4> Status: </h4>
+	{% if status %}
+		{% for s in status %}
+			<p> {{s.text}} </p>
 		{% endfor %}
 	{% else %}
 		<p> empty. </p>

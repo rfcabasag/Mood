@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} New Mood {% endblock %}
+{% block title %} Mood Status {% endblock %}
 
 {% block content %}
 
@@ -8,13 +8,10 @@
 	<form class = "ui form" method = "POST">
 		{% csrf_token %}
 		<div class="ui input">
-  			<input type="text" name = 'moodinput' placeholder="I'm feeling..." >
+  			<input type="text" name = 'statusinput' placeholder="I felt that way because..." >
 		</div>
 		<button class="ui button" type="submit">Submit</button>		
 	</form>
-	<a href="{% url 'addstatus' mood_id=mood.id%}">
-		<button class="ui button">Add Status</button>	
-	</a>	
 </div>
 <a href = "{% url 'logout' %}"> Logout </a>
 
