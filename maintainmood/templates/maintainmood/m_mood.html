@@ -9,7 +9,7 @@
 	{% if mood %}
 		{% for m in mood %}
 			<div>{{m.mood}} | {{m.status}}</div>
-			<a href="{{m.id}}/delete">delete</a>
+			<a href="{{m.id}}/delete">Delete mood</a>
 		{% endfor %}
 	{% else %}
 		<p> empty. </p>
