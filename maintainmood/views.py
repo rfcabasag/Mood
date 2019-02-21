@@ -43,8 +43,10 @@ def addmood(request):
 
 	if (request.method == 'POST'):
 		moodtext = request.POST['moodinput']
+		statustext = request.POST['statusinput']
 
-		newMood = Mood(user=current_user[0], mood=moodtext)
+		newMood = Mood(user=current_user[0], mood=moodtext, status=statustext)
+		# newMood = Mood(user=current_user[0], mood=moodtext)
 
 		newMood.save()
 
