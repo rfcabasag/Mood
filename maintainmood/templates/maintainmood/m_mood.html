@@ -7,6 +7,7 @@
 		Programmer				Change Date			Change Description
     Robert Cabasag			02/20/19			temporary interface
     Katreen Hernandez   02/21/19      add fixed menu, mood display improvements
+    Katreen Hernandez   02/22/19      add comments and function descriptions
 	
 	Creation Date: 02/20/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
@@ -35,10 +36,13 @@
 
 <div class="ui main text container">
   {% if mood %}
-  <div class="ui container segment">
+  <!-- mood segment -->
+  <div class="ui container segment" style="padding:20px 25px 30px 25px;">
     <h1>Today, you have felt</h1>
+    
     <div class="ui three cards">
     {% for m in mood %}
+    <!-- mood card per entry -->
       <div class="card">
         <div class="content">
           <div class="header">{{m.mood}}</div>
@@ -53,6 +57,8 @@
           </div>
         </a>
       </div>
+      
+      <!-- modal for deletion confirmation of entry -->
       <div id="{{m.id}}" class="modal">
         <div class="modal-content">
           <p>Are you sure you want to delete selected entry?</p>
@@ -75,13 +81,17 @@
     {% endfor %}
     </div>
   </div>
-  <div class="ui center aligned container segment">
+
+  <!-- multiple mood/activity input segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
     <p>Got more to add?</p>
     <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
     <a class="ui large button" id="bluebtn" href = "/activity-menu">input activity</a>
   </div>
   {% else %}
-  <div class="ui center aligned container segment">
+
+  <!-- no mood entries to display segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
     <p>You haven't registered anything for today.</p>
     <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
     <a class="ui large button" id="bluebtn" href = "/activity-menu">input activity</a>
@@ -90,12 +100,12 @@
 </div>
 
 <script>
-  // When the user clicks the button, open the modal 
+  // When the user clicks the delete button, open deletion confirmation modal
   function openModal(modalName) {
     document.getElementById(modalName).style.display = "block";
   }
   
-  // When the user clicks on <span> (x), close the modal
+  // When the user clicks 'back', exit modal
   function closeModal(modalName) {
     document.getElementById(modalName).style.display = "none";
   }

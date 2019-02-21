@@ -7,6 +7,7 @@
 		Programmer				Change Date			Change Description
     Robert Cabasag			02/20/19			temporary interface
     Katreen Hernandez   02/21/19      add fixed menu, add default moods, add status field
+    Katreen Hernandez   02/22/19      add comments and function descriptions
 	
 	Creation Date: 02/20/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
@@ -36,10 +37,12 @@
 <div class="ui main text container">
   <form method = "POST">
   {% csrf_token %}
-    <div class="ui container attached segment" style="padding:20px 25px;">
+    <div class="ui container attached segment" style="padding:20px 25px 30px 25px;">
+      <!-- mood input -->
       <h1>I'm feeling...</h1>
       <div style="text-align:center;">
         <div style="display:inline-block">
+          <!-- default mood choices -->
           <div style="margin-bottom:10px">
             <a id="Happy" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Happy')">Happy</a>
             <a id="Sad" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Sad')">Sad</a>
@@ -52,6 +55,7 @@
             <a id="Angry" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Angry')">Angry</a>
             <a id="Others" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="showOthers()">Others</a>
           </div>
+          <!-- others input -->
           <div id="othersForm" class="ui large form" style="display:none">
             <div class="fluid inline field">
               <label>Others</label>
@@ -62,7 +66,7 @@
       </div>
       <!-- status -->
       <h1>because...
-      <div class="ui form" style="margin-bottom:20px;">
+      <div class="ui form">
         <div class="field">
           <textarea rows="2" name="statusinput" placeholder="I'm feeling that way because..."></textarea>
         </div>
@@ -76,6 +80,7 @@
 </div>
 
 <script>
+  // This function changes the active mood button upon toggle and updates the value of 'moodinput'
   function updateMoodField(moodName) {
     var i;
     var x = document.getElementsByClassName("moodbtn");
@@ -89,6 +94,7 @@
     document.getElementById('moodfield').value = moodName;  
   }
 
+  // This function displays user input for prompting their own mood not in default choices
   function showOthers() {
     var x = document.getElementsByClassName("moodbtn");
     for (i = 0; i < x.length; i++) {
