@@ -8,6 +8,9 @@
 	<form class = "ui form" method = "POST">
 		{% csrf_token %}
 		<div class="ui input">
+  			<input type="text" name = 'moodinput' placeholder="I'm feeling..." >
+		</div>
+		<div class="ui input">
   			<input type="text" name = 'statusinput' placeholder="I felt that way because..." >
 		</div>
 		<button class="ui button" type="submit">Submit</button>		

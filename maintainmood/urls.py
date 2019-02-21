@@ -19,5 +19,5 @@ from . import views
 urlpatterns = [
 	path('', views.moodpage, name='moodpage'),
 	path('addmood/', views.addmood, name='addmood'),
-	path('addstatus-<int:mood_id>/', views.addstatus, name='addstatus'),
+	path('addstatus/', views.addstatus, name='addstatus'),
 ]

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Mood, Status
+from .models import Mood
 
 admin.site.register(Mood)
-admin.site.register(Status)
+#admin.site.register(Status)

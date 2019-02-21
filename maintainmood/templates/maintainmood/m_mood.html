@@ -8,27 +8,21 @@
 	<h4> Today you have been, </h4>
 	{% if mood %}
 		{% for m in mood %}
-			<p> {{m.mood}} </p>
-		{% endfor %}
-	{% else %}
-		<p> empty. </p>
-	{% endif %}
-	<h4> Status: </h4>
-	{% if status %}
-		{% for s in status %}
-			<p> {{s.text}} </p>
+			<p>{{m.mood}} | {{m.status}}</p>
 		{% endfor %}
 	{% else %}
 		<p> empty. </p>
 	{% endif %}
 </div>
 <div class = "ui container segment">	
-	<h4> Tell us how you feel </h4>
-	<a href="{% url 'addmood' %}"> 
-		<button class="ui button">
- 			 Add Mood
-		</button>
-	</a>
+	<h4>
+		Tell us how you feel ^_^ uwu
+		<a href="{% url 'addmood' %}"> 
+			<button class="ui button">
+	 			 Add Mood
+			</button>
+		</a>
+	</h4>
 </div>
 <a href = "{% url 'logout' %}"> Logout </a>
 
