@@ -7,6 +7,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Robert Daniel Cabasag			02/17/19		    added the add mood view
 		Robert Daniel Cabasag			02/20/19		    debugged addmood view, added moodpage
 		Robert Daniel Cabasag			02/21/19		    created addstatus 
+		Jose Maria Ibardaloza			02/21/19		    added deletemood
 	Creation Date: 02/17/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -74,3 +75,16 @@ def addstatus(request):
 		form = None
 	
 	return render(request, 'maintainmood/addstatus.html')
+
+# needs the mood_id as a parameter to check what mood to delete
+@login_required
+def deletemood(request, mood_id):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	moodlist = Mood.objects.filter(user=current_user[0])
+
+	delmood = Mood.objects.filter(id = mood_id)[0]
+	if(delmood.user.id == current_user[0].id):
+		delmood.delete()
+
+	return redirect('moodpage')
