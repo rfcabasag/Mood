@@ -3,20 +3,85 @@
 {% block title %} New Mood {% endblock %}
 
 {% block content %}
-
-<div class = "ui container segment">
-	<form class = "ui form" method = "POST">
-		{% csrf_token %}
-		<div class="ui input">
-  			<input type="text" name = 'moodinput' placeholder="I'm feeling..." >
-		</div>
-		<button class="ui button" type="submit">Submit</button>		
-	</form>
-	<a href="{% url 'addstatus' %}">
-		<button class="ui button">With Status</button>	
-	</a>	
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="#" class="item">Home</a>
+    <div class="right menu">
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
 </div>
-<a href = "{% url 'logout' %}"> Logout </a>
 
+<div class="ui main text container">
+  <form method = "POST">
+  {% csrf_token %}
+    <div class="ui container attached segment">
+      <h1>I'm feeling...</h1>
+      <div style="text-align:center;">
+        <div style="display:inline-block">
+          <div style="margin-bottom:10px">
+            <a id="Happy" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Happy')">Happy</a>
+            <a id="Sad" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Sad')">Sad</a>
+          </div>
+          <div style="margin-bottom:10px">
+            <a id="Stressed" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Stressed')">Stressed</a>
+            <a id="Tired" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Tired')">Tired</a>
+          </div>
+          <div style="margin-bottom:10px">
+            <a id="Angry" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Angry')">Angry</a>
+            <a id="Others" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="showOthers()">Others</a>
+          </div>
+          <div id="othersForm" class="ui large form" style="display:none">
+            <div class="fluid inline field">
+              <label>Others</label>
+              <input id="moodfield" type="text" name="moodinput" placeholder="input here...">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- status -->
+      <h1>because...
+      <div class="ui form">
+        <div class="field">
+          <textarea rows="2" name="statusinput" placeholder="I'm feeling that way because..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="ui two bottom attached buttons">
+        <a class="ui button" id="bluebtn" href="/maintainmood">back</a>
+        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+    </div>
+  </form>
+</div>
 
+<script>
+  function updateMoodField(moodName) {
+    var i;
+    var x = document.getElementsByClassName("moodbtn");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.backgroundColor = "#dbdbdb";
+      x[i].style.color = "initial"; 
+    }
+    document.getElementById(moodName).style.backgroundColor = "#eb6b6b";
+    document.getElementById(moodName).style.color = "#fff";
+    document.getElementById('othersForm').style.display = "none"; 
+    document.getElementById('moodfield').value = moodName;  
+  }
+
+  function showOthers() {
+    var x = document.getElementsByClassName("moodbtn");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.backgroundColor = "#dbdbdb";
+      x[i].style.color = "initial"; 
+    }
+    document.getElementById('Others').style.backgroundColor = "#eb6b6b";
+    document.getElementById('Others').style.color = "#fff";
+    document.getElementById('moodfield').value = ''; 
+    document.getElementById('othersForm').style.display = "block";
+  }
+</script>
 {% endblock %}
