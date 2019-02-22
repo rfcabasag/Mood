@@ -5,7 +5,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	Code History:
 		Programmer				        Change Date			Change Description
 		Jose Maria C. Ibardaloza		02/05/19		    added the SignUp class
-		Robert Daniel F Cabasag			02/18/19			modified the SignUp class to be a function
+		Robert Daniel F Cabasag			02/18/19			modified the SignUp class to be a view function
 	Creation Date: 02/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -20,7 +20,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import RegisteredUser
 
-# A simple view function for the sign up
+# Handles the sign up function
 def signup(request):
 	if (request.method == 'POST'):
 		form = UserCreationForm(request.POST)

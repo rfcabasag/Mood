@@ -24,7 +24,7 @@ from .models import Mood
 from SignUp.models import RegisteredUser
 from django.contrib.auth.decorators import login_required
 
-# lists the mood inputs of the user\
+# lists the moods and status inputs of the user
 @login_required
 def moodpage(request):
 	user = request.user
