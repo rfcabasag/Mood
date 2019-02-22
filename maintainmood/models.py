@@ -8,6 +8,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
 	
+	This file contains the object models for maintainmood app.
 """
 
 from django.db import models
@@ -23,10 +24,3 @@ class Mood(models.Model):
 	status = models.TextField(blank=True)
 	def __str__(self):
 		return self.mood
-
-"""
-class Status(models.Model):
-	user = models.ForeignKey(RegisteredUser, blank=False, on_delete=models.CASCADE)
-	parent_mood = models.ForeignKey(Mood, blank=False, on_delete=models.CASCADE)
-	text = models.TextField(blank=True)
-"""
