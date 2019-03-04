@@ -37,4 +37,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name = 'home.html'), name = 'Home'),
     path('', TemplateView.as_view(template_name = 'login.html'), name = 'Login'),
     path('maintainmood/', include('maintainmood.urls')),
+    path('maintainactivity/', include('maintainactivity.urls')),
 ]

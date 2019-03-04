@@ -4,15 +4,14 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	Author: Robert Daniel Cabasag
 	Code History:
 		Programmer				        Change Date			Change Description
-		Robert Daniel F Cabasag			03/05/19		    created file
+		Robert Daniel Cabasag			03/05/19		    created file			
 	Creation Date: 03/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
 	
-	This file contains the view function of the maintainactivity app.
-
+	This file contains url paths for the view functions.
 """
 
-from django.shortcuts import render
-
-# Create your views here.
+from django.conf.urls import url
+from django.urls import path
+from . import views

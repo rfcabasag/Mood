@@ -4,6 +4,7 @@
 	Code History:
 		Programmer				        Change Date			Change Description
 		Jose Maria C. Ibardaloza		02/05/19		    Added apps and redirect link
+        Robert Daniel F Cabasag         03/06/19            added maintainactivity app
 	Creation Date: 02/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SignUp',
     'maintainmood',
+    'maintainactivity',
 ]
 
 MIDDLEWARE = [
