@@ -38,15 +38,21 @@
   {% if mood %}
   <!-- mood segment -->
   <div class="ui container segment" style="padding:20px 25px 30px 25px;">
-    <div class="ui grid">
-      <div class="left aligned three wide column">
-       <i class="left floated big chevron circle left link icon"></i>
+    <div class="ui grid" style="margin-bottom: 15px;">
+      <div class="left aligned four wide column">
+      <button class="ui labeled icon button">
+        <i class="chevron left icon"></i>
+        Date prev
+      </button>
       </div>
-      <div class="center aligned ten wide column">
+      <div class="middle aligned center aligned eight wide column">
         <h1>Today, you have felt...</h1>
       </div>
-      <div class="right aligned three wide column">
-       <i class="left floated big chevron circle right link icon"></i>
+      <div class="right aligned four wide column">
+      <button class="ui right labeled icon button">
+        <i class="chevron right icon"></i>
+        Date next
+      </button>
       </div>
     </div>
     
