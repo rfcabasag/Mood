@@ -38,14 +38,25 @@
   {% if mood %}
   <!-- mood segment -->
   <div class="ui container segment" style="padding:20px 25px 30px 25px;">
-    <h1>Today, you have felt</h1>
+    <div class="ui grid">
+      <div class="left aligned three wide column">
+       <i class="left floated big chevron circle left link icon"></i>
+      </div>
+      <div class="center aligned ten wide column">
+        <h1>Today, you have felt...</h1>
+      </div>
+      <div class="right aligned three wide column">
+       <i class="left floated big chevron circle right link icon"></i>
+      </div>
+    </div>
     
     <div class="ui three cards">
     {% for m in mood %}
     <!-- mood card per entry -->
       <div class="card">
         <div class="content">
-          <div class="header">{{m.mood}} ({{m.date_posted}} -- {{m.time_posted}})</div>
+          <div class="header">{{m.mood}}</div>
+          <div class="meta">{{m.date_posted}}, {{m.time_posted}}</div>
           <div class="description">
             {{m.status}} 
           </div>
