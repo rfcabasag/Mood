@@ -15,6 +15,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from SignUp.models import RegisteredUser
 
+
 # this is the model for mood
 # pk = id, attributes = user (RegisteredUser), mood (text), status (text)
 class Mood(models.Model):
@@ -22,5 +23,11 @@ class Mood(models.Model):
 	user = models.ForeignKey(RegisteredUser,blank=False,on_delete=models.CASCADE)
 	mood = models.TextField(blank=True)
 	status = models.TextField(blank=True)
+	# date is handled with the auto date field for models
+	date_posted = models.DateField(auto_now_add = True)
+	# dinaya ko yung time since wala auto time lang laging may kasama date
+	# sa views ako naggenerate ng time and pinapass ko as string dito
+	# it works *shrugs*
+	time_posted = models.TextField(blank=True)
 	def __str__(self):
 		return self.mood

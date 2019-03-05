@@ -15,3 +15,8 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 from django.conf.urls import url
 from django.urls import path
 from . import views
+
+urlpatterns = [
+	path('', views.activitypage, name='activitypage'),
+
+]

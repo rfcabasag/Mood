@@ -23,6 +23,7 @@ from django.contrib.auth.models import User
 from .models import Mood
 from SignUp.models import RegisteredUser
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 # lists the moods and status inputs of the user
 @login_required
@@ -39,13 +40,14 @@ def moodpage(request):
 def addmood(request):
 	user = request.user
 	current_user = RegisteredUser.objects.filter(user=user)
-	
 
 	if (request.method == 'POST'):
 		moodtext = request.POST['moodinput']
 		statustext = request.POST['statusinput']
+		rawTime = datetime.now()
+		currTime = rawTime.strftime("%H:%M:%S")
 
-		newMood = Mood(user=current_user[0], mood=moodtext, status=statustext)
+		newMood = Mood(user=current_user[0], mood=moodtext, status=statustext, time_posted = currTime)
 		# newMood = Mood(user=current_user[0], mood=moodtext)
 
 		newMood.save()

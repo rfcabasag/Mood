@@ -45,9 +45,9 @@
     <!-- mood card per entry -->
       <div class="card">
         <div class="content">
-          <div class="header">{{m.mood}}</div>
+          <div class="header">{{m.mood}} ({{m.date_posted}} -- {{m.time_posted}})</div>
           <div class="description">
-            {{m.status}}
+            {{m.status}} 
           </div>
         </div>
         <a onclick="openModal('{{m.id}}')">
