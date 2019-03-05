@@ -16,4 +16,9 @@ from django.contrib.auth.models import User
 from SignUp.models import RegisteredUser
 from django.db import models
 
-# Create your models here.
+class Activity(models.Model):
+	id = models.AutoField(primary_key=True)
+	user = models.ForeignKey(RegisteredUser, blank=False, on_delete=models.CASCADE)
+	text = models.TextField(blank=True)
+	date_posted = models.DateField(auto_now_add = True)
+	time_posted = models.TextField(blank=True)

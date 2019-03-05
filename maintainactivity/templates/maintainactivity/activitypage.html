@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %} New Mood {% endblock %}
+{% block title %} Activity Page {% endblock %}
 
 {% block content %}
 
+<h1>You have reached, Activity Page.</h1>
 <div>
-	{{date}}
+	{% if activity %}
+		{% for act in activity %}
+			<div>Activity: {{act.text}} [{{act.time_posted}} -- {{act.date_posted}}]</div>
+		{% endfor %}
+	{% endif %}
 </div>
 <div>
-	{{time}}
+	<a href="addactivity/">Add Activity</a>
 </div>
 
 {% endblock %}

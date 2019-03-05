@@ -19,14 +19,35 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from SignUp.models import RegisteredUser
 from django.contrib.auth.decorators import login_required
+from .models import Activity
 from datetime import datetime
 
+@login_required
 def activitypage(request):
-	rawDate = datetime.now()
-	rawTime = datetime.now()
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	activitylist = Activity.objects.filter(user=current_user[0])
 
-	currDate = rawDate.strftime("%d/%m/%Y")
-	currTime = rawTime.strftime("%H:%M:%S")
+	return render(request, 'maintainactivity/activitypage.html', {'activity':activitylist})
 
-	return render(request, 'maintainactivity/activitypage.html', {'date':currDate, 'time':currTime})
+@login_required
+def addactivity(request):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+
+	if (request.method == 'POST'):
+		activitytext = request.POST['activityinput']
+		rawTime = datetime.now()
+		currTime = rawTime.strftime("%H:%M:%S")
+
+		newActivity = Activity(user=current_user[0], text=activitytext, time_posted = currTime)
+
+		newActivity.save()
+
+		return redirect('activitypage')
+	else:
+		form = None
+
+	return render(request, 'maintainactivity/addactivity.html')
+
 

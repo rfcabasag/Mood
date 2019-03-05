@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Activity Page {% endblock %}
+
+{% block content %}
+
+<div class = "ui container segment">
+	<form class = "ui form" method = "POST">
+		{% csrf_token %}
+		<div class="ui input">
+  			<input type="text" name = 'activityinput' placeholder="insert activity here"  >
+		</div>
+		<button class="ui button" type="submit">Submit</button>		
+	</form>
+</div>
+
+{% endblock %}

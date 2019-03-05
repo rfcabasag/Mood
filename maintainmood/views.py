@@ -48,7 +48,6 @@ def addmood(request):
 		currTime = rawTime.strftime("%H:%M:%S")
 
 		newMood = Mood(user=current_user[0], mood=moodtext, status=statustext, time_posted = currTime)
-		# newMood = Mood(user=current_user[0], mood=moodtext)
 
 		newMood.save()
 

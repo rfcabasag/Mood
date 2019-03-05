@@ -4,6 +4,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	Code History:
 		Programmer				        Change Date			Change Description
 		Robert Daniel Cabasag			02/17/19		    created file
+		Robert Daniel Cabasag			03/05/19			added timestamps for Mood object
 	Creation Date: 02/17/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness

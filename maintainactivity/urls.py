@@ -18,5 +18,6 @@ from . import views
 
 urlpatterns = [
 	path('', views.activitypage, name='activitypage'),
+	path('addactivity/', views.addactivity, name='addactivity'),
 
 ]
