@@ -5,6 +5,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 	Code History:
 		Programmer				        Change Date			Change Description
 		Robert Daniel F Cabasag			03/05/19		    created file
+		Robert Daniel F Cabasag			03/05/2019			created activitypage and addactivity views
 	Creation Date: 03/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
