@@ -38,7 +38,7 @@
   {% if mood %}
   <!-- mood segment -->
   <div class="ui container segment" style="padding:20px 25px 30px 25px;">
-    <div class="ui grid" style="margin-bottom: 15px;">
+    <!-- <div class="ui grid" style="margin-bottom: 15px;">
       <div class="left aligned four wide column">
       <button class="ui labeled icon button">
         <i class="chevron left icon"></i>
@@ -46,7 +46,7 @@
       </button>
       </div>
       <div class="middle aligned center aligned eight wide column">
-        <h1>Today, you have felt...</h1>
+        <h1>{% now "DATE_FORMAT" %}, you have felt...</h1>
       </div>
       <div class="right aligned four wide column">
       <button class="ui right labeled icon button">
@@ -54,17 +54,19 @@
         Date next
       </button>
       </div>
-    </div>
-    
+    </div> -->
+    {% regroup mood by date_posted as moodlist %}
+    {% for m in moodlist reversed %}
+    <h1>On {{m.grouper}}, you have felt...</h1>
     <div class="ui three cards">
-    {% for m in mood %}
+    {% for item in m.list %}
     <!-- mood card per entry -->
       <div class="card">
         <div class="content">
-          <div class="header">{{m.mood}}</div>
-          <div class="meta">{{m.date_posted}}, {{m.time_posted}}</div>
+          <div class="header">{{item.mood}}</div>
+          <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
           <div class="description">
-            {{m.status}} 
+            {{item.status}} 
           </div>
         </div>
         <a onclick="openModal('{{m.id}}')">
@@ -95,8 +97,9 @@
           </a>
         </div>
       </div>
-    {% endfor %}
+      {% endfor %}
     </div>
+    {% endfor %}
   </div>
 
   <!-- multiple mood/activity input segment -->
@@ -109,7 +112,7 @@
 
   <!-- no mood entries to display segment -->
   <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
-    <p>You haven't registered anything for today.</p>
+    <p>You haven't registered anything.</p>
     <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
     <a class="ui large button" id="bluebtn" href = "/maintainactivity">input activity</a>
   </div>
