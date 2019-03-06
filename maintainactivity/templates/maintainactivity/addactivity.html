@@ -20,18 +20,34 @@
 {% block title %} Activity Page {% endblock %}
 
 {% block content %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="#" class="item">Home</a>
+    <div class="right menu">
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
 
-<div class = "ui container segment">
-	<form class = "ui form" method = "POST">
-		{% csrf_token %}
-		<div class="ui input">
-  			<input type="text" name = 'activityinput' placeholder="insert activity here"  >
-		</div>
-		<button class="ui button" type="submit">Submit</button>		
-	</form>
+<div class="ui main text container">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="ui container attached segment" style="padding 20px 25px 30px 25px;">
+      <h1>Add an activity for today:</h1>
+      <div class="ui form" style="margin-bottom: 15px;">
+        <textarea rows="2" name="activityinput" placeholder="An activity for today..."></textarea>
+      </div>
+    </div>
+    <div class="ui two bottom attached buttons">
+        <a class="ui button" id="bluebtn" href="/maintainactivity">back</a>
+        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+    </div>
+  </form>
 </div>
-<div>
-	<a href="addactivity/"></a>
-</div>
+
 
 {% endblock %}
