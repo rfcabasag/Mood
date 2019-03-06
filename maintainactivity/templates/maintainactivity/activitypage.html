@@ -3,17 +3,91 @@
 {% block title %} Activity Page {% endblock %}
 
 {% block content %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="/" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="/" class="item">Home</a>
+    <div class="right menu">
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
 
-<h1>You have reached, Activity Page.</h1>
-<div>
-	{% if activity %}
-		{% for act in activity %}
-			<div>Activity: {{act.text}} [{{act.time_posted}} -- {{act.date_posted}}]</div>
-		{% endfor %}
-	{% endif %}
+<div class="ui main text container">
+  {% if activity %}
+  <div class="ui container segment" style="padding: 20px 25px 30px 25px">
+    {% regroup activity by date_posted as activitylist %}
+    {% for act in activitylist reversed %}
+      <h1>On {{act.grouper}}, you have done...</h1>
+      <div class="ui three cards">
+        {% for item in act.list %}
+        <!-- activity card per entry -->
+        <div class="card">
+          <div class="content">
+            <div class="header">{{item.text}}</div>
+            <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
+          </div>
+          <a onclick="openModal('{{act.text}}')">
+            <div class="ui bottom attached button">
+              <i class="close icon"></i>
+              delete mood
+            </div>
+          </a>
+        </div>
+
+        <!-- modal for deletion -->
+        <div id="{{act.text}}" class="modal">
+          <div class="modal-content">
+            <p>Are you sure you want to delete selected entry?</p>
+            <div style="margin:20px 0px 30px 0px;">
+              <div class="ui centered card">
+                <div class="content" style="text-align:left;">
+                  <div class="header">{{act.text}}</div>
+                  <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
+                </div>
+              </div>
+            </div>
+            <a class="ui button" onclick="closeModal('{{m.id}}')">no, go back</a>
+            <a href="{{act.id}}/delete" class="ui button" id="pinkbtn">
+              yes, delete it
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- multiple mood/activity input segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
+    <p>Got more to add?</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "{% url 'addactivity' %}">input activity</a>
+  </div>
+
+  {% else %}
+  <!-- no activity entries to display segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
+    <p>You haven't registered anything.</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "{% url 'addactivity' %}">input activity</a>
+  </div>
+  {% endif %}
 </div>
-<div>
-	<a href="addactivity/">Add Activity</a>
-</div>
+
+<script>
+  // When the user clicks the delete button, open deletion confirmation modal
+  function openModal(modalName) {
+    document.getElementById(modalName).style.display = "block";
+  }
+  
+  // When the user clicks 'back', exit modal
+  function closeModal(modalName) {
+    document.getElementById(modalName).style.display = "none";
+  }
+</script>
 
 {% endblock %}
