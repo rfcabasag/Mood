@@ -71,7 +71,7 @@
             {{item.status}} 
           </div>
         </div>
-        <a onclick="openModal('{{m.id}}')">
+        <a onclick="openModal('{{item.id}}')">
           <div class="ui bottom attached button">
             <i class="close icon"></i>
             delete mood
@@ -80,21 +80,21 @@
       </div>
       
       <!-- modal for deletion confirmation of entry -->
-      <div id="{{m.id}}" class="modal">
+      <div id="{{item.id}}" class="modal">
         <div class="modal-content">
           <p>Are you sure you want to delete selected entry?</p>
           <div style="margin:20px 0px 30px 0px;">
             <div class="ui centered card">
               <div class="content" style="text-align:left;">
-                <div class="header">{{m.mood}}</div>
+                <div class="header">{{item.mood}}</div>
                 <div class="description">
-                  {{m.status}}
+                  {{item.status}}
                 </div>
               </div>
             </div>
           </div>
-          <a class="ui button" onclick="closeModal('{{m.id}}')">no, go back</a>
-          <a href="{{m.id}}/delete" class="ui button" id="pinkbtn">
+          <a class="ui button" onclick="closeModal('{{item.id}}')">no, go back</a>
+          <a href="{{item.id}}/delete" class="ui button" id="pinkbtn">
             yes, delete it
           </a>
         </div>
