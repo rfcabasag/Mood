@@ -6,6 +6,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Programmer				        Change Date			Change Description
 		Robert Daniel F Cabasag			03/05/19		    created file
 		Robert Daniel F Cabasag			03/05/2019			created activitypage and addactivity views
+		Jose Maria C. Ibardaloza		03/07/2019			created deleteactivity view
 	Creation Date: 03/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -50,5 +51,17 @@ def addactivity(request):
 		form = None
 
 	return render(request, 'maintainactivity/addactivity.html')
+
+@login_required
+def deleteactivity(request, activity_id):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	activitylist = Activity.objects.filter(user=current_user[0])
+
+	delactivity = Activity.objects.filter(id = activity_id)[0]
+	if(delactivity.user.id == current_user[0].id):
+		delactivity.delete()
+
+	return redirect('activitypage')
 
 
