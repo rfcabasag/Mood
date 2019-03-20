@@ -1,0 +1,121 @@
+
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+    Robert Cabasag			02/20/19			temporary interface
+    Katreen Hernandez   02/21/19      add fixed menu, add default moods, add status field
+    Katreen Hernandez   02/22/19      add comments and function descriptions
+    Robert Cabasag      03/20/19      made small adjustments to accomodate update mood
+	
+	Creation Date: 02/20/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file contains html for the add mood interface.
+ -->
+  
+{% extends 'base.html' %}
+
+{% block title %} New Mood {% endblock %}
+
+{% block content %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="#" class="item">Home</a>
+    <a href="/maintainmood" class="active item">Moods</a>
+    <a href="/maintainactivity" class="item">Activities</a>
+    <div class="right menu">
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui main text container">
+  <form method = "POST">
+  {% csrf_token %}
+    <div class="ui container attached segment" style="padding:20px 25px 30px 25px;">
+      <!-- mood input -->
+      <h1>I'm feeling...</h1>
+      <div style="text-align:center;">
+        <div style="display:inline-block">
+
+          <!-- highlights existing mood input -->
+          {% if mood %}
+            <body onload="updateMoodField('{{mood.mood}}')">
+          {% endif %}
+          
+            <!-- default mood choices -->
+          <div style="margin-bottom:10px">
+            <a id="Happy" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Happy')">Happy</a>
+            <a id="Sad" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Sad')">Sad</a>
+          </div>
+          <div style="margin-bottom:10px">
+            <a id="Stressed" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Stressed')">Stressed</a>
+            <a id="Tired" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Tired')">Tired</a>
+          </div>
+          <div style="margin-bottom:10px">
+            <a id="Angry" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="updateMoodField('Angry')">Angry</a>
+            <a id="Others" class="ui large button moodbtn" style="background-color:#dbdbdb;width:200px;" onclick="showOthers()">Others</a>
+          </div>
+          <!-- others input -->
+          <div id="othersForm" class="ui large form" style="display:none">
+            <div class="fluid inline field">
+              <label>Others</label>
+              <input id="moodfield" type="text" name="moodinput" placeholder="input here...">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- status -->
+      <h1>because...</h1>
+      <div class="ui form">
+        <div class="field">
+          <!-- shows current values for mood -->
+          <textarea rows="2" name="statusinput">{% if mood %}{{mood.status}}{% endif %}</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="ui two bottom attached buttons">
+        <a class="ui button" id="bluebtn" href="/maintainmood">back</a>
+        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // This function changes the active mood button upon toggle and updates the value of 'moodinput'
+  function updateMoodField(moodName) {
+    var i;
+    var x = document.getElementsByClassName("moodbtn");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.backgroundColor = "#dbdbdb";
+      x[i].style.color = "initial"; 
+    }
+    document.getElementById(moodName).style.backgroundColor = "#eb6b6b";
+    document.getElementById(moodName).style.color = "#fff";
+    document.getElementById('othersForm').style.display = "none"; 
+    document.getElementById('moodfield').value = moodName;  
+  }
+
+  // This function displays user input for prompting their own mood not in default choices
+  function showOthers() {
+    var x = document.getElementsByClassName("moodbtn");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.backgroundColor = "#dbdbdb";
+      x[i].style.color = "initial"; 
+    }
+    document.getElementById('Others').style.backgroundColor = "#eb6b6b";
+    document.getElementById('Others').style.color = "#fff";
+    document.getElementById('moodfield').value = ''; 
+    document.getElementById('othersForm').style.display = "block";
+  }
+</script>
+{% endblock %}

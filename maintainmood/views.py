@@ -8,6 +8,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Robert Daniel Cabasag			02/20/19		    debugged addmood view, added moodpage
 		Robert Daniel Cabasag			02/21/19		    created addstatus 
 		Jose Maria Ibardaloza			02/21/19		    added deletemood
+		Robert Daniel Cabasag			03/20/19		    created updatemood
 	Creation Date: 02/17/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -91,3 +92,22 @@ def deletemood(request, mood_id):
 		delmood.delete()
 
 	return redirect('moodpage')
+
+# updates values for mood object
+# mood_id - for getting specific mood input
+@login_required
+def updatemood(request, mood_id):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	newMood = Mood.objects.filter(id=mood_id)[0]
+
+	if (request.method == 'POST' and newMood.user.id == current_user[0].id):
+		newMood.mood = request.POST['moodinput']
+		newMood.status = request.POST['statusinput']
+		newMood.save()
+
+		return redirect('moodpage')
+	else:
+		form = None
+
+	return render(request, 'maintainmood/updatemood.html', {'mood':newMood})

@@ -64,4 +64,8 @@ def deleteactivity(request, activity_id):
 
 	return redirect('activitypage')
 
+@login_required
+def updatemood(request, mood_id):
+	return redirect('maintainactivity/addactivity.html')
+
 
