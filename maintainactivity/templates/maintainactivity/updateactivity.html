@@ -38,14 +38,17 @@
   <form method="POST">
     {% csrf_token %}
     <div class="ui container attached segment" style="padding 20px 25px 30px 25px;">
-      <h1>Update Activity:</h1>
+      <h1 style="margin-bottom: 10px;">Update Activity:</h1>
       <div class="ui form" style="margin-bottom: 15px;">
-        <textarea rows="2" name="activityinput" placeholder="New activity..."></textarea>
+        <div class="field">
+          <div class="label">from {{activity.date_posted}}, {{activity.time_posted}}</div>
+          <textarea rows="2" name="activityinput" placeholder="Activity details...">{{activity.text}}</textarea>
+        </div>
       </div>
     </div>
     <div class="ui two bottom attached buttons">
-        <a class="ui button" id="bluebtn" href="/maintainactivity">back</a>
-        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+        <a class="ui button" id="bluebtn" href="/maintainactivity">disregard changes</a>
+        <button class="ui button" id="pinkbtn" type="submit">update</button>
     </div>
   </form>
 </div>
