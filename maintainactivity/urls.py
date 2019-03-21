@@ -7,6 +7,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Robert Daniel Cabasag			03/05/19		    created file
 		Robert Daniel Cabasag			03/05/19		    added activitypage and addactivity paths
 		Jose Maria Ibardaloza			03/07/19		    added delete activity path
+		Jose Maria Ibardaloza			03/18/19		    added update activity path
 	Creation Date: 03/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -22,4 +23,5 @@ urlpatterns = [
 	path('', views.activitypage, name='activitypage'),
 	path('addactivity/', views.addactivity, name='addactivity'),
 	path('<int:activity_id>/delete', views.deleteactivity, name='deleteactivity'),
+	path('<int:activity_id>/update', views.updateactivity, name='updateactivity'),
 ]
