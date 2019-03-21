@@ -72,7 +72,19 @@
             {{item.status}} 
           </div>
         </div>
-        <a onclick="openModal('{{item.id}}')">
+        <div class="extra content">
+          <div class="ui two buttons">
+            <a class="ui grey vertical animated button" tabindex="0" href="{{item.id}}/update">
+              <div class="visible content"><i class="edit icon"></i></div>
+              <div class="hidden content">update</div>
+            </a>
+            <div class="ui secondary vertical animated button" tabindex="0" onclick="openModal('{{item.id}}')">
+              <div class="visible content"><i class="close icon"></i></div>
+              <div class="hidden content">delete</div>
+            </div>
+          </div>
+        </div>
+        <!-- <a onclick="openModal('{{item.id}}')">
           <div class="ui bottom attached button">
             <i class="close icon"></i>
             delete mood
@@ -83,7 +95,7 @@
             <i class="edit icon"></i>
             update mood
           </div>
-        </a>
+        </a> -->
       </div>
       
       <!-- modal for deletion confirmation of entry -->
