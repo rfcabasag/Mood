@@ -102,7 +102,11 @@ def updatemood(request, mood_id):
 	newMood = Mood.objects.filter(id=mood_id)[0]
 
 	if (request.method == 'POST' and newMood.user.id == current_user[0].id):
-		newMood.mood = request.POST['moodinput']
+		getmood = request.POST['moodinput']
+		if (getmood):
+			# new mood change
+			newMood = getmood
+		# newMood.mood = request.POST['moodinput']
 		newMood.status = request.POST['statusinput']
 		newMood.save()
 
