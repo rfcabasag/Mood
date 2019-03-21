@@ -7,6 +7,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Robert Daniel F Cabasag			03/05/19		    created file
 		Robert Daniel F Cabasag			03/05/2019			created activitypage and addactivity views
 		Jose Maria C. Ibardaloza		03/07/2019			created deleteactivity view
+		Jose Maria C. Ibardaloza		03/20/2019			created updateactivity view
 	Creation Date: 03/05/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
@@ -65,7 +66,19 @@ def deleteactivity(request, activity_id):
 	return redirect('activitypage')
 
 @login_required
-def updatemood(request, mood_id):
-	return redirect('maintainactivity/addactivity.html')
+def updatemood(request, activity_id):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	newActivity = Activity.objects.filter(id=activity_id)[0]
+
+	if (request.method == 'POST' and newActivity.user.id == current_user[0].id):
+		newActivity.text = request.POST['activityinput']
+		newActivity.save()
+
+		return redirect('activitypage')
+	else:
+		form = None
+
+	return render(request, 'maintainactivity/updateactivity.html', {'activity':newActivity})
 
 
