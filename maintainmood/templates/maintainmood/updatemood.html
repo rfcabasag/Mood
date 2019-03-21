@@ -20,7 +20,7 @@
   
 {% extends 'base.html' %}
 
-{% block title %} New Mood {% endblock %}
+{% block title %} Update Mood {% endblock %}
 
 {% block content %}
 <!-- fixed menu -->
@@ -43,14 +43,25 @@
   {% csrf_token %}
     <div class="ui container attached segment" style="padding:20px 25px 30px 25px;">
       <!-- mood input -->
+      {% if mood %}
+      <h1>Update mood input:</h1>
+      <!-- display mood card with original content -->
+      <div class="ui fluid card" style="margin-bottom: 30px;">
+        <div class="content">
+          <div class="header">{{mood.mood}}</div>
+          <div class="meta">{{mood.date_posted}}, {{mood.time_posted}}</div>
+          <div class="description">{{mood.status}}</div>
+        </div>
+      </div>
+      {% else %}
       <h1>I'm feeling...</h1>
+      {% endif %}
       <div style="text-align:center;">
         <div style="display:inline-block">
-
-          <!-- highlights existing mood input -->
+          <!-- highlights existing mood input
           {% if mood %}
             <body onload="updateMoodField('{{mood.mood}}')">
-          {% endif %}
+          {% endif %} -->
           
             <!-- default mood choices -->
           <div style="margin-bottom:10px">
@@ -84,8 +95,8 @@
       </div>
     </div>
     <div class="ui two bottom attached buttons">
-        <a class="ui button" id="bluebtn" href="/maintainmood">back</a>
-        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+        <a class="ui button" id="bluebtn" href="/maintainmood">disregard changes</a>
+        <button class="ui button" id="pinkbtn" type="submit">update</button>
     </div>
   </form>
 </div>
