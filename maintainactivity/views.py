@@ -66,7 +66,7 @@ def deleteactivity(request, activity_id):
 	return redirect('activitypage')
 
 @login_required
-def updatemood(request, activity_id):
+def updateactivity(request, activity_id):
 	user = request.user
 	current_user = RegisteredUser.objects.filter(user=user)
 	newActivity = Activity.objects.filter(id=activity_id)[0]
