@@ -105,7 +105,7 @@ def updatemood(request, mood_id):
 		getmood = request.POST['moodinput']
 		if (getmood):
 			# new mood change
-			newMood = getmood
+			newMood.mood = getmood
 		# newMood.mood = request.POST['moodinput']
 		newMood.status = request.POST['statusinput']
 		newMood.save()
