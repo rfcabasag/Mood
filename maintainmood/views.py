@@ -9,6 +9,7 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 		Robert Daniel Cabasag			02/21/19		    created addstatus 
 		Jose Maria Ibardaloza			02/21/19		    added deletemood
 		Robert Daniel Cabasag			03/20/19		    created updatemood
+		Robert Daniel Cabasag			04/05/19		    created mood_stats
 	Creation Date: 02/17/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
