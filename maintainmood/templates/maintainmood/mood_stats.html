@@ -1,14 +1,54 @@
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+    Robert Cabasag			04/04/19			initial document
+    Katreen Hernandez   04/05/19      add menu and UI
+	
+	Creation Date: 02/20/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file contains html for the mood maintenance interface.
+ -->
+
 {% extends 'base.html' %}
 
 {% block title %} Mood. {% endblock %}
 
 {% block content %}
-
-<div class="ui raised very padded text container segment">
-    <canvas id="myChart" width="100" height="400"></canvas>
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+    <div class="ui container">
+      <a href="#" class="header item">
+        <div class="mood0">Mood</div>
+      </a>
+      <a href="/" class="item">Home</a>
+      <a href="/maintainmood" class="item">Moods</a>
+      <a href="/maintainactivity" class="item">Activities</a>
+      <div class="right menu">
+		<a href="#" class="active item">Mood Stats</a>
+		<a href="/maintainmood/activitystats" class="item">Activity Stats</a>
+        <a href="{% url 'logout' %}" class="item">Logout</a>
+      </div>
+    </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<!-- <div class="ui raised very padded text container segment">
+    <canvas id="myChart" width="100" height="400"></canvas>
+</div> -->
+
+<div class = "ui main text container">
+  
+  <div class="ui container segment" style="padding:20px 25px 30px 25px;">
+    <h1>Overall Mood Statistics</h1>
+    <div class="ui container"><canvas id="myChart" width="100" height="400"></canvas></div>
+  </div>
+</div>
+
 <script>
     // accesses each mood's total count
     var happy = "{{mood_count.Happy}}"
