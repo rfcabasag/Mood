@@ -81,4 +81,12 @@ def updateactivity(request, activity_id):
 
 	return render(request, 'maintainactivity/updateactivity.html', {'activity':newActivity})
 
+@login_required
+def activitystats(request):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	activitylist = Activity.objects.filter(user=current_user[0])
+
+	return render(request, 'maintainactivity/activitystats.html', {'activity':activitylist})
+
 
