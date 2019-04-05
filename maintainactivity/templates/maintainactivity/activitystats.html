@@ -1,62 +1,95 @@
-<!--
+<!-- 
 	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
 
 	Author: Katreen Kyle M. Hernandez
 
 	Code History:
 		Programmer				Change Date			Change Description
-    Robert Cabasag			03/04/19			temporary interface
-    Katreen Hernandez   03/06/19      add fixed menu, containers
-    Jose Maria Ibardaloza		03/20/19			added update activity button
-    Katreen Hernandez   03/21/19      improve update/delete buttons
-
+    JM Ibardaloza			04/05/19		  	initial interface
+    Katreen Hernandez 04/05/19        fixed per day view
+	
 	Creation Date: 03/04/2019
 	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
 	Client Group: Students meaning to have a sense of mindfulness
-
+	
 	This file contains html for the add mood interface.
  -->
 
-{% extends 'base.html' %}
+ {% extends 'base.html' %}
 
-{% block title %} View Activity Page {% endblock %}
+ {% block title %} Activity Page {% endblock %}
+ 
+ {% block content %}
+ <!-- fixed menu -->
+ <div class="ui fixed huge menu">
+   <div class="ui container">
+     <a href="/" class="header item">
+       <div class="mood0">Mood</div>
+     </a>
+     <a href="/" class="item">Home</a>
+     <a href="/maintainmood" class="item">Moods</a>
+     <a href="/maintainactivity" class="item">Activities</a>
+     <div class="right menu">
+       <a href="/maintainmood/moodstats" class="item">Mood Stats</a>
+       <a href="/maintainactivity/activitystats" class="active item">Activity Stats</a>
+       <a href="{% url 'logout' %}" class="item">Logout</a>
+     </div>
+   </div>
+ </div>
+ 
+ <div class="ui main text container">
+   {% if activity %}
+   <div class="ui container segment" style="padding: 20px 25px 30px 25px">
+     <!-- date selector -->
+    {% regroup activity by date_posted as dates %}
+    <form>
+      <select name="dateselect" onchange="show(this.options[this.selectedIndex].value)" style="padding:10px;border-radius:20px;width:100%;">
+        <option>Select date to view</option>
+        {% for date in dates %}
+        <option value="{{date.grouper}}">{{date.grouper}}</option>
+        {% endfor %}
+      </select>
+    </form>
 
-{% block content %}
-<!-- fixed menu -->
-<div class="ui fixed huge menu">
-  <div class="ui container">
-    <a href="/" class="header item">
-      <div class="mood0">Mood</div>
-    </a>
-    <a href="/" class="item">Home</a>
-    <a href="/maintainmood" class="item">Moods</a>
-    <a href="/maintainactivity" class="item">Activities</a>
-    <div class="right menu">
-        <a href="/maintainmood/moodstats" class="item">Mood Stats</a>
-        <a href="/maintainactivity/activitystats" class="active item">Activity Stats</a>
-      <a href="{% url 'logout' %}" class="item">Logout</a>
-    </div>
-  </div>
-</div>
-
-<div class="ui main text container">
-  {% if activity %}
-  <div class="ui container segment" style="padding: 20px 25px 30px 25px">
-    <!-- {% regroup activity by date_posted as activitylist %} -->
-    {% for act in activitylist reversed %}
-      <h1>On {{act.grouper}}, you have done...</h1>
-      <div class="ui three cards">
-        {% for item in act.list %}
-        <!-- activity card per entry -->
-        <div class="card">
-          <div class="content">
-            <div class="header">{{item.text}}</div>
-            <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
+    <!-- {% regroup activity by date_posted as actsbydate %} -->
+    {% for actsperday in dates reversed %}
+      <div class="ui container actsperday" id="{{actsperday.grouper}}" style="display:none;margin-top:20px;">
+        <!-- per day -->
+        <h1>On {{actsperday.grouper}}, your activites are:</h1>
+        <!-- {% regroup actsperday by time_posted as actsbytime %} -->
+        <div class="ui three cards">
+        {% for item in actsperday.list reversed %}
+          <div class="card">
+            <div class="content">
+              <div class="header">{{item.text}}</div>
+              <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
+            </div>
           </div>
+        {% endfor %}
         </div>
-      {% endfor %}
       </div>
     {% endfor %}
-  </div>
-  {% endif %}
-{% endblock %}
+  {% else %}
+  <!-- no activity entries to display segment -->
+    <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
+      <p>You haven't registered anything.</p>
+      <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+      <a class="ui large button" id="bluebtn" href = "{% url 'addactivity' %}">input activity</a>
+    </div>
+   {% endif %}
+   </div>
+ </div>
+ 
+ <script>
+    function show(acts) {
+      var i;
+      var x = document.getElementsByClassName("actsperday");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      document.getElementById(acts).style.display = "block";
+    }
+  </script>
+ 
+ {% endblock %}
+ 
