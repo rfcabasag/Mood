@@ -24,4 +24,5 @@ urlpatterns = [
 	path('addstatus/', views.addstatus, name='addstatus'),
 	path('<int:mood_id>/delete', views.deletemood, name='deletemood'),
 	path('<int:mood_id>/update', views.updatemood, name='updatemood'),
+	path('moodstats/', views.mood_stats, name='moodstats')
 ]

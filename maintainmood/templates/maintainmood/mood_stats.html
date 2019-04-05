@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Mood. {% endblock %}
+
+{% block content %}
+
+<div class="ui raised very padded text container segment">
+    <canvas id="myChart" width="100" height="400"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+<script>
+    // accesses each mood's total count
+    var happy = "{{mood_count.Happy}}"
+    var sad = "{{mood_count.Sad}}"
+    var tired = "{{mood_count.Tired}}"
+    var stressed = "{{mood_count.Stressed}}"
+    var angry = "{{mood_count.Angry}}"
+    var others = "{{mood_count.Others}}"
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: ['Happy', 'Sad', 'Stressed', 'Tired', 'Angry', 'Others'],
+            datasets: [{
+                label: 'Mood Summary',
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1,
+                data: [happy, sad, stressed, tired, angry, others]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            "responsive": true,
+            "maintainAspectRatio": false 
+        }
+    }); 
+</script>
+{% endblock %}

@@ -19,12 +19,13 @@ This is a course requirement for CS 192 Software Engineering II under the superv
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
 from .models import Mood
 from SignUp.models import RegisteredUser
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+import json
 
 # lists the moods and status inputs of the user
 @login_required
@@ -115,3 +116,43 @@ def updatemood(request, mood_id):
 		form = None
 
 	return render(request, 'maintainmood/updatemood.html', {'mood':newMood})
+
+# gets total count for each mood
+@login_required
+def mood_stats(request):
+	user = request.user
+	current_user = RegisteredUser.objects.filter(user=user)
+	moodlist = Mood.objects.filter(user=current_user[0])
+	
+	happy_count = 0
+	sad_count = 0
+	stressed_count = 0
+	tired_count = 0
+	angry_count = 0
+	others_count = 0
+
+	for entry in moodlist:
+		if (entry.mood == "Happy"):
+			happy_count += 1
+		elif (entry.mood == "Sad"):
+			sad_count += 1
+		elif (entry.mood == "Stressed"):
+			stressed_count += 1
+		elif (entry.mood == "Tired"):
+			tired_count += 1
+		elif (entry.mood == "Angry"):
+			angry_count += 1
+		else:
+			others_count += 1
+
+	mood_dict = {
+		'Happy':happy_count,
+		'Sad':sad_count,
+		'Stressed':stressed_count,
+		'Tired':tired_count,
+		'Angry':angry_count,
+		'Others':others_count }
+	#mood_count = json.dumps(mood_dict)
+
+	return render(request, 'maintainmood/mood_stats.html', {'mood_count':mood_dict})
+
