@@ -24,4 +24,5 @@ urlpatterns = [
 	path('addactivity/', views.addactivity, name='addactivity'),
 	path('<int:activity_id>/delete', views.deleteactivity, name='deleteactivity'),
 	path('<int:activity_id>/update', views.updateactivity, name='updateactivity'),
+	path('activitystats/', views.activitystats, name='activitystats'),
 ]
