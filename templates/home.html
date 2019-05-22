@@ -1,0 +1,63 @@
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+		Katreen Hernandez		02/08/19			placeholder home landing page
+		Katreen Hernandez		02/20/19			update title text
+		Katreen Hernandez		03/21/19			update nav bar links
+		Katreen Hernandez		04/05/19			add stats menu items
+
+	Creation Date: 02/06/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Katreen Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file is the landing page for logged in/logged out user of the project Mood.
+ -->
+
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+		<a href="/" class="active item">Home</a>
+    <a href="/maintainmood" class="item">Moods</a>
+    <a href="/maintainactivity" class="item">Activities</a>
+    <div class="right menu">
+			<a href="/maintainmood/moodstats" class="item">Mood Stats</a>
+			<a href="/maintainactivity/activitystats" class="item">Activity Stats</a>
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
+
+<!-- content -->
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<p class="text-opening">How are you feeling today, <a href="#" class="link-pink">{{ user.username }}</a>?</p>
+		<a class="ui large button" id="pinkbtn" href = "/maintainmood">view my mood page</a>
+		<a class="ui large button" id="bluebtn" href = "/maintainactivity">view my activity page</a>
+	</div>
+</div>
+{% else %}
+
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<h1 class="mood1 fadein-1">
+			Mood
+		</h1>
+		<a class="ui large button fadein-2" id="pinkbtn" href = "{% url 'login' %}"> log in </a>
+		<a class="ui large button fadein-2" id="bluebtn" href = "/accounts/signup"> sign up </a>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

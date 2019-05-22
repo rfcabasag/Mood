@@ -1,0 +1,58 @@
+<!-- 
+  This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+  Author: Katreen Kyle M. Hernandez
+
+  Code History:
+  Programmer				Change Date			Change Description
+  Robert Cabasag			03/04/19			temporary interface
+  Katreen Hernandez   03/06/19      add fixed menu, containers
+  Katreen Hernandez   04/05/19      update links in navbar
+
+  Creation Date: 03/04/2019
+  Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+  Client Group: Students meaning to have a sense of mindfulness
+
+  This file contains html for the add mood interface.
+ -->
+
+{% extends 'base.html' %}
+
+{% block title %} Activity Page {% endblock %}
+
+{% block content %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="/" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="/" class="item">Home</a>
+    <a href="/maintainmood" class="item">Moods</a>
+    <a href="/maintainactivity" class="active item">Activities</a>
+    <div class="right menu">
+      <a href="/maintainmood/moodstats" class="item">Mood Stats</a>
+      <a href="/maintainactivity/activitystats" class="item">Activity Stats</a>
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui main text container">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="ui container attached segment" style="padding 20px 25px 30px 25px;">
+      <h1>Add an activity for today:</h1>
+      <div class="ui form" style="margin-bottom: 15px;">
+        <textarea rows="2" name="activityinput" placeholder="An activity for today..."></textarea>
+      </div>
+    </div>
+    <div class="ui two bottom attached buttons">
+        <a class="ui button" id="bluebtn" href="/maintainactivity">back</a>
+        <button class="ui button" id="pinkbtn" type="submit">submit</button>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

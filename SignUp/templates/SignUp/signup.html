@@ -1,0 +1,49 @@
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+		Katreen Hernandez		02/08/19			placeholder signup
+
+	Creation Date: 02/06/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file is the template for signup screen of the project Mood.
+ -->
+
+{% extends 'base.html' %}
+
+{% block title %} Mood - Sign Up {% endblock %}
+
+{% block content %}
+<div class="ui middle aligned center aligned grid">
+	<div class="column">
+		<h1 class="ui header">
+			<div class="content">
+				<font color="white">Mood</font>
+			</div>
+		</h1>
+		<form class="ui large form" method="post">
+			<div class="ui left aligned stacked segment">
+			{% csrf_token %}
+            <div class = "field">
+                <label>Name</label>
+                <input type = "text" name = "username">
+            </div>
+            <div class = "field">
+                <label>Password</label>
+                <input type = "password" name = "password1">
+            </div>
+            <div class = "field">
+                <label>Confirm Password</label>
+                <input type = "password" name = "password2">
+            </div>
+				<button class="ui fluid large submit button" id="pinkbtn" type="submit">sign up</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,159 @@
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+    Robert Cabasag			02/20/19			temporary interface
+    Katreen Hernandez   02/21/19      add fixed menu, mood display improvements
+    Katreen Hernandez   02/22/19      add comments and function descriptions
+    Robert Cabasag      03/20/19      added update mood button
+    Katreen Hernandez   03/21/19      improve update/delete buttons
+    Katreen Hernandez   04/05/19      add stats menu items
+	
+	Creation Date: 02/20/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file contains html for the mood maintenance interface.
+ -->
+
+{% extends 'base.html' %}
+
+{% block title %} Mood. {% endblock %}
+
+{% block content %}
+<!-- fixed menu -->
+<div class="ui fixed huge menu">
+  <div class="ui container">
+    <a href="/" class="header item">
+      <div class="mood0">Mood</div>
+    </a>
+    <a href="/" class="item">Home</a>
+    <a href="/maintainmood" class="active item">Moods</a>
+    <a href="/maintainactivity" class="item">Activities</a>
+    <div class="right menu">
+      <a href="/maintainmood/moodstats" class="item">Mood Stats</a>
+      <a href="/maintainmood/activitystats" class="item">Activity Stats</a>
+      <a href="{% url 'logout' %}" class="item">Logout</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui main text container">
+  {% if mood %}
+  <!-- mood segment -->
+  <div class="ui container segment" style="padding:20px 25px 30px 25px;">
+    <!-- <div class="ui grid" style="margin-bottom: 15px;">
+      <div class="left aligned four wide column">
+      <button class="ui labeled icon button">
+        <i class="chevron left icon"></i>
+        Date prev
+      </button>
+      </div>
+      <div class="middle aligned center aligned eight wide column">
+        <h1>{% now "DATE_FORMAT" %}, you have felt...</h1>
+      </div>
+      <div class="right aligned four wide column">
+      <button class="ui right labeled icon button">
+        <i class="chevron right icon"></i>
+        Date next
+      </button>
+      </div>
+    </div> -->
+    {% regroup mood by date_posted as moodlist %}
+    {% for m in moodlist reversed %}
+    <h1>On {{m.grouper}}, you have felt...</h1>
+    <div class="ui three cards">
+    {% for item in m.list %}
+    <!-- mood card per entry -->
+      <div class="card">
+        <div class="content">
+          <div class="header">{{item.mood}}</div>
+          <div class="meta">{{item.date_posted}}, {{item.time_posted}}</div>
+          <div class="description">
+            {{item.status}} 
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <a class="ui grey vertical animated button" tabindex="0" href="{{item.id}}/update">
+              <div class="visible content"><i class="edit icon"></i></div>
+              <div class="hidden content">update</div>
+            </a>
+            <div class="ui secondary vertical animated button" tabindex="0" onclick="openModal('{{item.id}}')">
+              <div class="visible content"><i class="close icon"></i></div>
+              <div class="hidden content">delete</div>
+            </div>
+          </div>
+        </div>
+        <!-- <a onclick="openModal('{{item.id}}')">
+          <div class="ui bottom attached button">
+            <i class="close icon"></i>
+            delete mood
+          </div>
+        </a>
+        <a href="{{item.id}}/update">
+          <div class="ui bottom attached button">
+            <i class="edit icon"></i>
+            update mood
+          </div>
+        </a> -->
+      </div>
+      
+      <!-- modal for deletion confirmation of entry -->
+      <div id="{{item.id}}" class="modal">
+        <div class="modal-content">
+          <p>Are you sure you want to delete selected entry?</p>
+          <div style="margin:20px 0px 30px 0px;">
+            <div class="ui centered card">
+              <div class="content" style="text-align:left;">
+                <div class="header">{{item.mood}}</div>
+                <div class="description">
+                  {{item.status}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="ui button" onclick="closeModal('{{item.id}}')">no, go back</a>
+          <a href="{{item.id}}/delete" class="ui button" id="pinkbtn">
+            yes, delete it
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- multiple mood/activity input segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
+    <p>Got more to add?</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "{% url 'addactivity' %}">input activity</a>
+  </div>
+  {% else %}
+
+  <!-- no mood entries to display segment -->
+  <div class="ui center aligned container segment" style="padding:20px 25px 25px 25px;">
+    <p>You haven't registered anything.</p>
+    <a class="ui large button" id="pinkbtn" href = "{% url 'addmood' %}">input mood</a>
+    <a class="ui large button" id="bluebtn" href = "{% url 'addactivity' %}">input activity</a>
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  // When the user clicks the delete button, open deletion confirmation modal
+  function openModal(modalName) {
+    document.getElementById(modalName).style.display = "block";
+  }
+  
+  // When the user clicks 'back', exit modal
+  function closeModal(modalName) {
+    document.getElementById(modalName).style.display = "none";
+  }
+</script>
+
+{% endblock %}

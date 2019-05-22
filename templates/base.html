@@ -1,0 +1,222 @@
+<!-- 
+	This is a course requirement for CS 192 Software Engineering II under the supervision of Asst. Prof. Ma. Rowena C. Solamo of the Department of Computer Science, College of Engineering, University of the Philippines, Diliman for the AY 2018-2019.
+
+	Author: Katreen Kyle M. Hernandez
+
+	Code History:
+		Programmer				Change Date			Change Description
+		Katreen Hernandez		02/08/19			declare universal styles
+		Katreen Hernandez		02/20/19			added new classes for mood maintenance
+		Katreen Hernandez		04/05/19			added Charts.js library
+	
+	Creation Date: 02/06/2019
+	Development Group: Team consisting of Robert Cabasag, Jose Maria Ibardaloza, and Kat Hernandez
+	Client Group: Students meaning to have a sense of mindfulness
+	
+	This file contains html base code with universal styles and Semantic-UI for expansion of other templates of the project Mood.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Base Page {% endblock %}</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+	
+	<style type="text/css">
+		body {
+			background: #a8d1e7;
+		}
+
+		body > .grid {
+		  height: 100%;
+		}
+
+		p {
+			font-size: 1.5em;
+			margin-bottom: 5px;
+		}
+
+		h1 {
+			font-size: 2em;
+			margin-bottom: 20px;
+		}
+
+		/* menu column */
+		.column {
+		  max-width: 450px;
+		}
+
+		/* main title */
+		.mood1 {
+			font-family: 'Rubik';
+			font-size: 150px;
+			color: #fff;
+			text-shadow: -5px 5px #eb6b6b, 5px -5px #24315e;
+		}
+
+		.mood2 {
+			font-family: 'Rubik';
+			font-size: 100px;
+			color: #fff;
+			text-shadow: -5px 5px #eb6b6b, 5px -5px #24315e;
+		}
+
+		.mood0 {
+			font-family: 'Rubik';
+			font-weight: bold;
+			font-size: 24px;
+			color: #eb6b6b;
+			transition: 0.5s;
+		}
+
+		.mood0:hover {
+			transition: 0.5s;
+			color: #24315e;
+		}
+
+		/* opening spiel style */
+		.text-opening {
+			font-family: 'Rubik';
+			font-weight: bold;
+			color: #24315e;
+			font-size: 46px;
+			text-align: center;
+			line-height: 1;
+			margin-bottom: 25px;
+		}
+
+		a.link-pink {
+			color: #eb6b6b;
+			transition: 0.5s;
+		}
+
+		a.link-pink:hover {
+			color: #ec5d5d;
+			transition: 0.5s;
+		}
+
+		.main.container {
+			margin-top: 6em;
+		}
+
+		/* modal dimming */
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			padding-top: 100px; /* Location of the box */
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+
+		/* modal */
+		.modal-content {
+			background-color: #fefefe;
+			text-align: center;
+			margin: auto;
+			padding: 20px;
+			border: 1px solid #888;
+			border-radius: 5px;
+			width:400px;
+		}
+
+		/* fade classes */
+		.fadein-1 {
+			animation: fadein 1.5s;
+		}
+
+		.fadein-2 {
+			animation: fadein 2s;
+		}
+
+		/* delay classes */
+		.delay-1 {
+			animation-delay: 1.5s;
+		}
+
+		.delay-2 {
+			animation-delay: 2s;
+		}
+
+		/* sidebar for date toggle */
+		/* .sidenav {
+			width: 200px;
+			position: fixed;
+			z-index: 10;
+			top: 12.6%;
+			left: 13%;
+			background: #fefefe;
+			border: 1px solid #eee;
+			border-radius: 5px;
+			overflow-x: hidden;
+			max-height: 200px;
+		}
+
+		.sidenav button {
+			background-color: #fefefe;
+			border: 0;
+			padding: 10px 8px;
+			width: inherit;
+			text-decoration: none;
+			font-size: 14px;
+			color: #000;
+			display: block;
+			transition: 0.5s;
+		}
+
+		.sidenav button:hover {
+			background-color: #eee;
+			transition: 0.5s;
+		}
+
+		.sidenav button.active {
+			color:#fff;
+			background-color: #eb6b6b;
+			font-weight: bold;
+		} */
+
+		/* buttons */
+		#pinkbtn {
+			background-color: #eb6b6b;
+			color: #fff;
+			transition: 0.5s;
+		}
+		#pinkbtn:hover {
+			transition: 0.5s;
+			background-color: #ec5d5d;
+		}
+
+		#bluebtn {
+			background-color: #24315e;
+			color: #fff;
+			transition: 0.5s;
+		}
+		#bluebtn:hover {
+			transition: 0.5s;
+			background-color: #1b2752;
+		}
+
+		@keyframes fadein {
+			from { opacity: 0; }
+			to   { opacity: 1; }
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+
+	{% block script %}{% endblock %}
+</head>
+<body>
+	{% block content %}
+	{% endblock %}
+</body>
+</html>
