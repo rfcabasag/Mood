@@ -1,1 +1,1 @@
-web: gunicorn mood.wsgi --log-file -
+web: gunicorn mood.wsgi --log-level=info --log-file -
